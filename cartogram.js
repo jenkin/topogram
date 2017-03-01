@@ -61,8 +61,8 @@
           .geometries.map(function(geom) {
             return {
               type: "Feature",
-              id: geom.id,
-              properties: properties.call(null, geom, topology),
+              id: geom.id || geom.properties.id,
+              properties: geom.properties, //properties.call(null, geom, topology),
               geometry: geom
             };
           });
@@ -197,8 +197,8 @@
     carto.feature = function(topology, geom) {
       return {
         type: "Feature",
-        id: geom.id,
-        properties: properties.call(null, geom, topology),
+        id: geom.id || geom.properties.id,
+        properties: geom.properties, //properties.call(null, geom, topology),
         geometry: {
           type: geom.type,
           coordinates: topojson.feature(topology, geom).geometry.coordinates
